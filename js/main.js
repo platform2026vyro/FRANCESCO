@@ -31,7 +31,9 @@ $$('a[href^="#"]').forEach(a=>{
   });
 });
 
-// Galleries — carica immagini da /images/<sezione>/ se presenti, altrimenti placeholder + istruzioni
+// Galleries + Banner — priorità a foto caricate da admin (localStorage), poi /images/
+const PHOTO_KEYS = { banner:'pf_photos_banner', 'chi-era':'pf_photos_chi-era', 'sua-storia':'pf_photos_sua-storia', 'nostra-storia':'pf_photos_nostra-storia' };
+function getAdminPhotos(panel){ try{ return JSON.parse(localStorage.getItem(PHOTO_KEYS[panel]))||null }catch{ return null } }
 const galleries = [
   {id:'chi-era', count:6, title:'Chi era Francesco'},
   {id:'sua-storia', count:6, title:'La sua storia'},
@@ -40,18 +42,19 @@ const galleries = [
 function renderGallery(g){
   const grid = document.getElementById(`grid-${g.id}`);
   if(!grid) return;
+  const admin = getAdminPhotos(g.id);
   grid.innerHTML='';
-  for(let i=1;i<=g.count;i++){
+  const total = admin && admin.length ? admin.length : g.count;
+  for(let i=1;i<=total;i++){
     const item=document.createElement('div');
     item.className='gallery-item';
     const img=document.createElement('img');
-    // prova a caricare images/<id>/<i>.jpg — se 404 mostra placeholder
-    const src=`images/${g.id}/${i}.jpg`;
+    const src = admin && admin[i-1] ? admin[i-1] : `images/${g.id}/${i}.jpg`;
     img.src=src;
     img.alt=`${g.title} — foto ${i}`;
     img.loading='lazy';
     img.onerror=()=>{
-      item.innerHTML=`<div class="gallery-placeholder">Aggiungi<br><code>images/${g.id}/${i}.jpg</code><br>(${g.title})</div>`;
+      item.innerHTML=`<div class="gallery-placeholder">Aggiungi da admin o<br><code>images/${g.id}/${i}.jpg</code><br>(${g.title})</div>`;
     };
     item.appendChild(img);
     item.addEventListener('click', ()=> openLightbox(g.id, i));
@@ -59,6 +62,17 @@ function renderGallery(g){
   }
 }
 galleries.forEach(renderGallery);
+// Banner 3 foto
+(function renderBanner(){
+  const admin = getAdminPhotos('banner');
+  if(!admin || !admin.length) return;
+  const items=document.querySelectorAll('.banner-item');
+  items.forEach((fig, idx)=>{
+    if(admin[idx]){
+      fig.innerHTML=`<img src="${admin[idx]}" alt="Banner ${idx+1}" style="width:100%;height:100%;object-fit:cover">`;
+    }
+  });
+})();
 
 // Lightbox
 const lightbox=$('#lightbox'), lbImg=$('#lightboxImage'), lbCaption=$('#lightboxCaption'), lbCounter=$('#lightboxCounter');
@@ -70,11 +84,12 @@ function openLightbox(gallery, index){
   lightbox.classList.add('open');
 }
 function updateLightbox(){
-  lbImg.src=`images/${lbState.gallery}/${lbState.index}.jpg`;
+  const admin = getAdminPhotos(lbState.gallery);
+  lbImg.src = admin && admin[lbState.index-1] ? admin[lbState.index-1] : `images/${lbState.gallery}/${lbState.index}.jpg`;
   lbImg.alt=`${lbState.gallery} — foto ${lbState.index}`;
   lbCaption.textContent=`${lbState.gallery} — ${lbState.index} / ${lbState.total}`;
   lbCounter.textContent=`${lbState.index} / ${lbState.total}`;
-  lbImg.onerror=()=>{ lbCaption.textContent=`Aggiungi images/${lbState.gallery}/${lbState.index}.jpg`; };
+  lbImg.onerror=()=>{ lbCaption.textContent=`Aggiungi da admin o images/${lbState.gallery}/${lbState.index}.jpg`; };
 }
 $('#lightboxClose')?.addEventListener('click', ()=> lightbox.classList.remove('open'));
 $('#lightboxPrev')?.addEventListener('click', ()=>{ lbState.index = lbState.index>1? lbState.index-1: lbState.total; updateLightbox(); });

@@ -32,13 +32,22 @@ $('#clearBtn').addEventListener('click', ()=>{
   renderAll();
 });
 
-document.querySelectorAll('.tab').forEach(t=>{
+document.querySelectorAll('.tab[data-tab]').forEach(t=>{
   t.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tab[data-tab]').forEach(x=>x.classList.remove('active'));
     t.classList.add('active');
     const tab=t.dataset.tab;
     document.getElementById('panelStories').style.display = tab==='stories'?'block':'none';
     document.getElementById('panelThoughts').style.display = tab==='thoughts'?'block':'none';
+  });
+});
+// Photo panels tabs
+document.querySelectorAll('.tab[data-ptab]').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab[data-ptab]').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelectorAll('.photo-panel').forEach(p=> p.style.display='none');
+    document.getElementById('photoPanel-'+t.dataset.ptab).style.display='block';
   });
 });
 
@@ -105,5 +114,75 @@ function renderAll(){
   renderList('listStoriesApproved', sa, 'approved');
   renderList('listThoughtsPending', tp, 'pending');
   renderList('listThoughtsApproved', ta, 'approved');
+  renderPhotoPreviews();
 }
 renderAuth();
+
+// --- Foto: gestione per pannello, salvate in localStorage come base64 ---
+const PHOTO_KEYS = { banner:'pf_photos_banner', 'chi-era':'pf_photos_chi-era', 'sua-storia':'pf_photos_sua-storia', 'nostra-storia':'pf_photos_nostra-storia' };
+function loadPhotos(panel){ return load(PHOTO_KEYS[panel], []); }
+function savePhotos(panel, arr){ save(PHOTO_KEYS[panel], arr); }
+function renderPhotoPreviews(){
+  Object.keys(PHOTO_KEYS).forEach(panel=>{
+    const el=document.getElementById('preview-'+panel);
+    if(!el) return;
+    const arr=loadPhotos(panel);
+    el.innerHTML='';
+    if(!arr.length){ el.innerHTML='<small>Nessuna foto caricata da admin. Verranno usate quelle in images/'+panel+'/ se presenti.</small>'; return; }
+    arr.forEach((src, idx)=>{
+      const wrap=document.createElement('div'); wrap.className='item'; wrap.style.display='flex'; wrap.style.gap='10px'; wrap.style.alignItems='center';
+      wrap.innerHTML=`<img src="${src}" style="width:90px;height:90px;object-fit:cover;border-radius:10px;border:2px solid #FFECB3"><span style="flex:1"><small>${panel} — ${idx+1}</small></span>`;
+      const del=document.createElement('button'); del.className='btn btn-no'; del.textContent='Rimuovi';
+      del.onclick=()=>{ const a=loadPhotos(panel); a.splice(idx,1); savePhotos(panel,a); renderPhotoPreviews(); };
+      wrap.appendChild(del);
+      el.appendChild(wrap);
+    });
+  });
+}
+function handleFileInput(panel){
+  const input=document.getElementById('file-'+panel);
+  if(!input) return;
+  input.addEventListener('change', async ()=>{
+    const files=[...input.files];
+    if(!files.length) return;
+    const arr=loadPhotos(panel);
+    for(const f of files){
+      const b64=await fileToDataURL(f);
+      // ridimensiona client-side per non esplodere localStorage (max ~5MB)
+      const resized=await resizeDataUrl(b64, 1200);
+      arr.push(resized);
+    }
+    savePhotos(panel, arr);
+    input.value='';
+    renderPhotoPreviews();
+    alert('Foto aggiunte per '+panel+'. Ricarica il sito per vederle.');
+  });
+}
+['banner','chi-era','sua-storia','nostra-storia'].forEach(handleFileInput);
+document.getElementById('exportPhotosBtn')?.addEventListener('click', ()=>{
+  const data={};
+  Object.keys(PHOTO_KEYS).forEach(k=> data[k]=loadPhotos(k));
+  const blob=new Blob([JSON.stringify(data)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='per-francesco-photos.json'; a.click();
+});
+document.getElementById('clearPhotosBtn')?.addEventListener('click', ()=>{
+  if(!confirm('Svuotare tutte le foto caricate da admin?')) return;
+  Object.values(PHOTO_KEYS).forEach(k=> localStorage.removeItem(k));
+  renderPhotoPreviews();
+});
+function fileToDataURL(file){
+  return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file); });
+}
+function resizeDataUrl(dataUrl, maxSide){
+  return new Promise(res=>{
+    const img=new Image(); img.onload=()=>{
+      let w=img.width, h=img.height;
+      if(w>maxSide || h>maxSide){
+        const s=Math.min(maxSide/w, maxSide/h); w=Math.round(w*s); h=Math.round(h*s);
+      } else return res(dataUrl);
+      const c=document.createElement('canvas'); c.width=w; c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      res(c.toDataURL('image/jpeg', 0.8));
+    }; img.src=dataUrl;
+  });
+}

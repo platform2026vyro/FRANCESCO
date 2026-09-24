@@ -71,12 +71,35 @@ small{opacity:.7}
   </div>
 
   <div class="card" style="margin-top:14px">
-    <h3>Gallery — come aggiungere le tue foto</h3>
-    <ol style="margin-left:18px">
-      <li>Metti i file in <code>images/chi-era/</code>, <code>images/sua-storia/</code>, <code>images/nostra-storia/</code></li>
-      <li>Nominali <code>1.jpg</code>, <code>2.jpg</code>, <code>3.jpg</code> … fino a <code>6.jpg</code> (puoi aumentare <code>count</code> in <code>js/main.js</code>)</li>
-      <li>Formati consigliati: JPG — lato lungo 1600px — peso &lt; 400KB</li>
-    </ol>
+    <h3>📸 Gestione Foto — carica da qui per ogni pannello</h3>
+    <p><small>Carica le foto dall'admin: verranno mostrate subito sul sito (salvate nel browser). Per renderle permanenti per tutti i visitatori, clicca <strong>Esporta foto</strong> e inviale a chi gestisce il sito, oppure lasciale in localStorage (funziona sul tuo dispositivo).</small></p>
+    <div class="tabs" style="margin-top:10px">
+      <button class="tab active" data-ptab="banner">Banner 3 foto</button>
+      <button class="tab" data-ptab="chi-era">Chi era Francesco</button>
+      <button class="tab" data-ptab="sua-storia">La sua storia</button>
+      <button class="tab" data-ptab="nostra-storia">La nostra storia</button>
+    </div>
+    <div id="photoPanel-banner" class="photo-panel">
+      <input type="file" id="file-banner" accept="image/*" multiple>
+      <div class="list" id="preview-banner" style="margin-top:10px"></div>
+    </div>
+    <div id="photoPanel-chi-era" class="photo-panel" style="display:none">
+      <input type="file" id="file-chi-era" accept="image/*" multiple>
+      <div class="list" id="preview-chi-era" style="margin-top:10px"></div>
+    </div>
+    <div id="photoPanel-sua-storia" class="photo-panel" style="display:none">
+      <input type="file" id="file-sua-storia" accept="image/*" multiple>
+      <div class="list" id="preview-sua-storia" style="margin-top:10px"></div>
+    </div>
+    <div id="photoPanel-nostra-storia" class="photo-panel" style="display:none">
+      <input type="file" id="file-nostra-storia" accept="image/*" multiple>
+      <div class="list" id="preview-nostra-storia" style="margin-top:10px"></div>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn" id="exportPhotosBtn" style="background:var(--y3)">Esporta foto (JSON)</button>
+      <button class="btn btn-no" id="clearPhotosBtn">Svuota tutte le foto</button>
+    </div>
+    <p><small>Puoi anche continuare a caricare via FTP in <code>images/banner/</code>, <code>images/chi-era/</code> ecc. Le foto caricate da admin hanno priorità.</small></p>
   </div>
 </div>
 
