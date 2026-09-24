@@ -1,5 +1,5 @@
 // Admin semplice — localStorage moderation
-const ADMIN_PASSWORD = 'francesco';
+const ADMIN_PASSWORD = 'sarafrancesco90';
 const LS_KEYS = { storiesPending:'pf_stories_pending', storiesApproved:'pf_stories_approved', thoughtsPending:'pf_thoughts_pending', thoughtsApproved:'pf_thoughts_approved' };
 const $ = s=>document.querySelector(s);
 function load(k,f){ try{ return JSON.parse(localStorage.getItem(k)) ?? f }catch{ return f } }
