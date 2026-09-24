@@ -156,26 +156,56 @@ async function savePanel(panel){
   if(!files.length){ alert('Seleziona prima le foto con "Scegli file"'); return; }
   const btn=document.querySelector(`[data-save="${panel}"]`);
   const st=document.getElementById('status-'+panel);
+  if(btn) btn.disabled=true;
   if(btn) btn.textContent='⏳ Salvo...';
+  if(st) st.textContent='';
   let arr=loadPhotos(panel);
+  let saved=0, errors=[];
   for(const f of files){
-    if(f.size>8*1024*1024){ alert('File troppo grande (>8MB): '+f.name); continue; }
-    const b64=await fileToDataURL(f);
-    let resized=await resizeDataUrl(b64, 900);
-    if(resized.length>600*1024) resized=await resizeDataUrl(b64, 700);
-    arr.push(resized);
-    try{ savePhotos(panel, arr); }catch(e){
-      arr.pop();
-      alert('Spazio esaurito (localStorage ~5MB). Rimuovi qualche foto o usa immagini più piccole. '+e.message);
-      break;
-    }
+    if(f.size>10*1024*1024){ errors.push(f.name+': troppo grande'); continue; }
+    try{
+      const b64=await fileToDataURL(f);
+      let resized=await resizeDataUrl(b64, 800);
+      if(resized.length>450*1024) resized=await resizeDataUrl(b64, 600);
+      // test save
+      const test=[...arr, resized];
+      try{
+        localStorage.setItem(PHOTO_KEYS[panel], JSON.stringify(test));
+        arr=test;
+        saved++;
+      }catch(e){
+        // prova ulteriore compressione
+        const r2=await resizeDataUrl(b64, 500);
+        try{
+          const test2=[...arr, r2];
+          localStorage.setItem(PHOTO_KEYS[panel], JSON.stringify(test2));
+          arr=test2;
+          saved++;
+        }catch(e2){
+          errors.push(f.name+': spazio esaurito');
+          break;
+        }
+      }
+    }catch(e){ errors.push(f.name+': '+e.message); }
   }
+  // salva definitivo (già salvato ad ogni iterazione, ma assicurati)
+  try{ savePhotos(panel, arr); }catch(e){ errors.push('Salvataggio finale: '+e.message); }
   pendingFiles[panel]=[];
-  document.getElementById('file-'+panel).value='';
-  if(st) st.textContent='✅ Salvato!';
-  if(btn) btn.textContent='💾 SALVA foto '+panel;
+  const inp=document.getElementById('file-'+panel);
+  if(inp) inp.value='';
+  if(btn){ btn.disabled=false; btn.textContent='💾 SALVA foto '+panel; }
   renderPhotoPreviews();
-  setTimeout(()=>{ if(st) st.textContent=''; }, 2500);
+  // stima uso
+  let used=0;
+  try{ used=new Blob(Object.values(localStorage)).size; }catch{}
+  if(st){
+    if(saved>0) st.textContent=`✅ Salvato ${saved}/${files.length} foto` + (errors.length? ' — '+errors.join(', ') : '') + ` (uso ~${Math.round(used/1024)}KB)`;
+    else st.textContent='❌ '+errors.join(', ');
+    st.style.color= saved? '#2E7D32' : '#C62828';
+  }
+  if(saved>0){
+    alert(`Salvate ${saved} foto in "${panel}".\n\n⚠️ NOTA: le foto sono salvate SOLO sul tuo browser (localStorage). Per renderle visibili a TUTTI i visitatori, vai su GitHub > images/${panel}/ e carica le stesse foto lì, oppure mandamele e le pubblico io. Uso attuale: ${Math.round(used/1024)}KB`);
+  }
 }
 document.querySelectorAll('[data-save]').forEach(b=>{
   b.addEventListener('click', ()=> savePanel(b.dataset.save));
