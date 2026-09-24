@@ -35,8 +35,8 @@ $$('a[href^="#"]').forEach(a=>{
 const PHOTO_KEYS = { banner:'pf_photos_banner', hero:'pf_photos_hero', 'chi-era':'pf_photos_chi-era', 'nostra-storia':'pf_photos_nostra-storia', lettera:'pf_photos_lettera' };
 function getAdminPhotos(panel){ try{ return JSON.parse(localStorage.getItem(PHOTO_KEYS[panel]))||null }catch{ return null } }
 const galleries = [
-  {id:'chi-era', count:6, title:'Chi era Francesco'},
-  {id:'nostra-storia', count:6, title:'La nostra storia'},
+  {id:'chi-era', count:13, title:'Chi era Francesco'},
+  {id:'nostra-storia', count:9, title:'La nostra storia'},
 ];
 function renderGallery(g){
   const grid = document.getElementById(`grid-${g.id}`);
