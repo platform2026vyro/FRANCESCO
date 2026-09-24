@@ -125,7 +125,7 @@
                     <p class="section-subtitle">Cosa è successo quel giorno</p>
                 </header>
                 
-                <div class="content-grid reverse">
+                <div class="content-grid" style="grid-template-columns:1fr">
                     <div class="content-text">
                         <div class="timeline">
                             <div class="timeline-item">
@@ -169,14 +169,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="content-gallery" id="gallery-sua-storia">
-                        <h3 class="gallery-title">Gallery</h3>
-                        <div class="gallery-grid" id="grid-sua-storia">
-                            <!-- Le immagini verranno caricate dinamicamente -->
-                        </div>
-                        <button class="btn btn-gallery-expand" data-gallery="sua-storia">Visualizza tutte le foto</button>
                     </div>
                 </div>
             </div>
@@ -230,39 +222,31 @@
                     <div id="letteraPhotoWrap" style="display:none"><img id="letteraPhoto" src="" alt="Lettera foto" style="width:100%;max-height:420px;object-fit:cover;display:block"></div>
                     <header class="letter-header">
                         <span class="letter-badge">LETTERA APERTA</span>
-                        <h2 class="letter-title">Sulla sicurezza sul lavoro: non è fatalità, è scelta</h2>
-                        <p class="letter-meta">Scritta da <strong>Walter</strong> — Padre di Francesco</p>
+                        <h2 class="letter-title">Sulla sicurezza sul lavoro — in memoria di Francesco</h2>
+                        <p class="letter-meta">Scritta da <strong>Chiara Palumbo</strong></p>
                     </header>
                     
                     <div class="letter-content" id="letterContent">
-                        <p class="letter-paragraph"><strong>Mio figlio Francesco non è tornato a casa il 15 marzo 2023.</strong> Non per una malattia improvvisa, non per un destino crudele. È morto perché qualcuno ha deciso che la sicurezza costava troppo tempo, troppi soldi, troppa fatica.</p>
-                        
-                        <p class="letter-paragraph">Una lastra di cemento armato da due tonnellate. Non ancorata. Nessun parapetto. Nessun preposto presente. Il Documento Valutazione Rischi fermo a sei mesi prima. La riunione di cantiere saltata "perché si fa in fretta".</p>
-                        
-                        <p class="letter-paragraph">Queste non sono dimenticanze. Sono <strong>scelte</strong>. Scelte che qualcuno ha fatto seduto in un ufficio, o in piedi su un ponteggio, pensando "tanto niente succede". Fino a quando succede. E allora è troppo tardi.</p>
-                        
+                        <p class="letter-paragraph"><strong>Francesco, 23 anni, la mattina va a lavoro e non fa ritorno. Quello che dovrebbe darti una vita, in realtà te la toglie.</strong></p>
+                        <p class="letter-paragraph">Chiediamoci se è normale. Chiediamoci se possiamo fare qualcosa. Perché anche l'indifferenza uccide. Potrebbe succedere a un vostro fratello, a un vostro figlio, al vostro fidanzato, a un amico, a un cugino. E quando succede, non muore soltanto una persona: cambia per sempre la vita di una famiglia, di chi lo ama, di chi quella mattina lo ha salutato pensando di rivederlo qualche ora dopo.</p>
+                        <p class="letter-paragraph">E Francesco non è un numero. Ma dietro Francesco ci sono numeri che non possiamo ignorare.</p>
                         <div class="letter-highlight">
-                            <p>In Italia muoiono ancora <strong>oltre 1.000 persone l'anno</strong> sul lavoro. Tremila nei primi nove mesi del 2023. Non sono numeri. Sono padri, madri, figli, fratelli. Sono posti vuoti a tavola. Sono futuri cancellati.</p>
+                            <p>Secondo i dati INAIL, dal 1° gennaio al 31 luglio 2026 in Italia sono state presentate <strong>368.085 denunce di infortunio</strong>. Tra i lavoratori, <strong>256.471</strong> infortuni sono avvenuti durante l'attività lavorativa, con un aumento del <strong>4,9%</strong> rispetto allo stesso periodo del 2025. Le denunce di infortunio con esito mortale sono state <strong>595</strong> complessivamente. E in Campania gli infortuni avvenuti durante il lavoro sono aumentati dell'<strong>8,1%</strong>.</p>
+                            <p>Sono numeri enormi. Ma dobbiamo smettere di leggerli soltanto come numeri. Dietro ognuno di questi dati c'è una persona. C'è qualcuno che quella mattina si è svegliato, si è preparato ed è andato a lavorare. C'è qualcuno che lo aspettava a casa.</p>
                         </div>
-                        
-                        <p class="letter-paragraph">La sicurezza non è un modulo da firmare. Non è un casco comprato all'ultimo minuto per l'ispezione. Non è un corso fatto di fretta sul divano di casa.</p>
-                        
-                        <p class="letter-paragraph"><strong>La sicurezza è:</strong></p>
-                        <ul class="letter-list">
-                            <li>Il coraggio di fermare il lavoro quando non è sicuro</li>
-                            <li>Il preposto che c'è, vede, interviene</li>
-                            <li>Il Datore di Lavoro che investe in prevenzione prima che in avvocati</li>
-                            <li>Il lavoratore che denuncia senza paura di ritorsioni</li>
-                            <li>Lo Stato che controlla e sanziona davvero</li>
-                        </ul>
-                        
-                        <p class="letter-paragraph">Chiedo a voi — lavoratori, preposti, datori di lavoro, sindacati, istituzioni, cittadini — di smettere di chiamarle "morti bianche". <strong>Non c'è nulla di bianco, di pulito, di neutro in una vita spezzata per negligenza.</strong></p>
-                        
-                        <p class="letter-paragraph">Chiedo che ogni cantiere, ogni fabbrica, ogni ufficio diventi un luogo dove la domanda "è sicuro?" venga prima di "quanto ci mettiamo?".</p>
-                        
-                        <p class="letter-paragraph">Lo chiedo per Francesco. Per tutti i Francesco che non ci sono più. Per tutti quelli che domani usciranno di casa per andare a lavorare.</p>
-                        
-                        <p class="letter-signature">Con dolore e determinazione,<br><strong>Walter</strong><br>Padre di Francesco</p>
+                        <p class="letter-paragraph">Si dice che bisogna studiare per crearsi un futuro. Si dice che bisogna lavorare per poter andare avanti. Francesco aveva un diploma che gli permetteva di svolgere il suo lavoro. Francesco lavorava per potersi realizzare, da solo e con me. Francesco faceva esattamente quello che ci insegnano fin da bambini: studiare, lavorare, costruirsi un futuro. Ma quel futuro gli è stato tolto a 23 anni.</p>
+                        <p class="letter-paragraph">Si parla tanto di sensibilizzazione, si parla tanto di scuola, di cultura. Si parla tanto di inserire nuovi corsi nell'ambito scolastico. Ma ci chiediamo mai dove vadano a finire queste idee? Ci chiediamo mai come vengano realmente svolti i corsi sul primo soccorso e sulla sicurezza sul lavoro? Quanti ne vengono fatti? Quanto durano? Quanto rimane davvero a chi li frequenta? Quanta importanza diamo a tematiche che possono fare la differenza tra tornare a casa e non tornarci più?</p>
+                        <p class="letter-paragraph">La scuola è importante. La cultura è importante. Ma chi ci insegna a salvaguardarci? Chi ci insegna a proteggerci? Chi ci insegna concretamente come stare al sicuro sul posto di lavoro e come tornare a casa dalla propria famiglia?</p>
+                        <p class="letter-paragraph">Oltre ad una formazione però la sicurezza non può esistere soltanto sulla carta o in un attestato ottenuto dopo un corso.</p>
+                        <p class="letter-paragraph"><strong>La formazione è fondamentale, ma non può essere tutto.</strong> Perché non possiamo pensare che sia soltanto il lavoratore a doversi proteggere. Possiamo insegnare a una persona ogni regola sulla sicurezza, possiamo formarla, possiamo dirle quali sono i rischi. Ma poi quella persona deve entrare in un luogo di lavoro in cui quelle regole vengono rispettate davvero.</p>
+                        <p class="letter-paragraph">La sicurezza significa anche controllare che un ambiente di lavoro sia sicuro prima che accada una tragedia. Significa valutare realmente i rischi, avere attrezzature adeguate e sicure, stabilire procedure precise e fare in modo che vengano rispettate. Significa controllare, prevenire, intervenire quando qualcosa non va. E soprattutto significa che ognuno deve assumersi le proprie responsabilità. Perché la sicurezza di una persona non può dipendere soltanto dalla sua attenzione. Chi organizza il lavoro, chi mette a disposizione le attrezzature, chi deve verificare che le norme vengano rispettate ha nelle proprie mani qualcosa di molto più importante della produttività: ha la vita delle persone che lavorano.</p>
+                        <p class="letter-paragraph">Francesco una cultura l'aveva. Francesco aveva studiato. Francesco lavorava. Francesco aveva dei progetti. Ma Francesco non è tornato a casa.</p>
+                        <p class="letter-paragraph">Le indagini su quanto accaduto sono ancora in corso e sarà la magistratura ad accertare i fatti e le eventuali responsabilità. Non voglio sostituirmi a chi ha il compito di farlo, né anticipare conclusioni che oggi non possono essere tratte. Voglio però che, nel pieno rispetto delle indagini, la storia di Francesco possa essere raccontata. Perché parlare di lui e chiedere maggiore sicurezza sul lavoro non significa stabilire chi sia responsabile: significa chiedere che si faccia tutto ciò che è possibile affinché ciò che è accaduto non debba accadere ancora.</p>
+                        <p class="letter-paragraph">E allora non possiamo limitarci a dire che è stata una tragedia. Non possiamo commuoverci per qualche giorno e poi dimenticare. Dobbiamo chiederci cosa possiamo cambiare affinché un altro ragazzo di 23 anni, domani mattina, possa andare a lavorare e la sera possa semplicemente fare la cosa più normale del mondo: tornare a casa.</p>
+                        <div class="letter-highlight">
+                            <p><strong>Il lavoro dovrebbe permetterti di costruire la vita, non essere il motivo per cui la perdi.</strong></p>
+                        </div>
+                        <p class="letter-signature"><strong>Chiara Palumbo</strong></p>
                     </div>
                     
                     <div class="letter-actions">

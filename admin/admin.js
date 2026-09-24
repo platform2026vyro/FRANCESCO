@@ -119,7 +119,7 @@ function renderAll(){
 renderAuth();
 
 // --- Foto: gestione per pannello, salvate in localStorage come base64 ---
-const PHOTO_KEYS = { banner:'pf_photos_banner', hero:'pf_photos_hero', 'chi-era':'pf_photos_chi-era', 'sua-storia':'pf_photos_sua-storia', 'nostra-storia':'pf_photos_nostra-storia', lettera:'pf_photos_lettera' };
+const PHOTO_KEYS = { banner:'pf_photos_banner', hero:'pf_photos_hero', 'chi-era':'pf_photos_chi-era', 'nostra-storia':'pf_photos_nostra-storia', lettera:'pf_photos_lettera' };
 function loadPhotos(panel){ return load(PHOTO_KEYS[panel], []); }
 function savePhotos(panel, arr){ save(PHOTO_KEYS[panel], arr); }
 function renderPhotoPreviews(){
@@ -150,7 +150,7 @@ function handleFileInput(panel){
     if(st) st.textContent= pendingFiles[panel].length ? pendingFiles[panel].length+' file selezionati — clicca SALVA' : '';
   });
 }
-['banner','hero','chi-era','sua-storia','nostra-storia','lettera'].forEach(handleFileInput);
+['banner','hero','chi-era','nostra-storia','lettera'].forEach(handleFileInput);
 async function savePanel(panel){
   const files=pendingFiles[panel]||[];
   if(!files.length){ alert('Seleziona prima le foto con "Scegli file"'); return; }
