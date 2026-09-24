@@ -32,7 +32,7 @@ $$('a[href^="#"]').forEach(a=>{
 });
 
 // Galleries + Banner — priorità a foto caricate da admin (localStorage), poi /images/
-const PHOTO_KEYS = { banner:'pf_photos_banner', 'chi-era':'pf_photos_chi-era', 'sua-storia':'pf_photos_sua-storia', 'nostra-storia':'pf_photos_nostra-storia' };
+const PHOTO_KEYS = { banner:'pf_photos_banner', hero:'pf_photos_hero', 'chi-era':'pf_photos_chi-era', 'sua-storia':'pf_photos_sua-storia', 'nostra-storia':'pf_photos_nostra-storia', lettera:'pf_photos_lettera' };
 function getAdminPhotos(panel){ try{ return JSON.parse(localStorage.getItem(PHOTO_KEYS[panel]))||null }catch{ return null } }
 const galleries = [
   {id:'chi-era', count:6, title:'Chi era Francesco'},
@@ -62,16 +62,28 @@ function renderGallery(g){
   }
 }
 galleries.forEach(renderGallery);
-// Banner 3 foto
+// Banner 3 foto + Hero + Lettera
 (function renderBanner(){
   const admin = getAdminPhotos('banner');
-  if(!admin || !admin.length) return;
-  const items=document.querySelectorAll('.banner-item');
-  items.forEach((fig, idx)=>{
-    if(admin[idx]){
-      fig.innerHTML=`<img src="${admin[idx]}" alt="Banner ${idx+1}" style="width:100%;height:100%;object-fit:cover">`;
-    }
-  });
+  if(admin && admin.length){
+    const items=document.querySelectorAll('.banner-item');
+    items.forEach((fig, idx)=>{
+      if(admin[idx]){
+        fig.innerHTML=`<img src="${admin[idx]}" alt="Banner ${idx+1}" style="width:100%;height:100%;object-fit:cover">`;
+      }
+    });
+  }
+  const hero = getAdminPhotos('hero');
+  if(hero && hero[0]){
+    const hb=document.querySelector('.hero-background');
+    if(hb){ hb.style.background=`url('${hero[0]}') center/cover no-repeat`; hb.style.opacity='0.9'; }
+  }
+  const lettera = getAdminPhotos('lettera');
+  if(lettera && lettera[0]){
+    const wrap=document.getElementById('letteraPhotoWrap');
+    const img=document.getElementById('letteraPhoto');
+    if(wrap && img){ img.src=lettera[0]; wrap.style.display='block'; }
+  }
 })();
 
 // Lightbox

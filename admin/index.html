@@ -75,17 +75,29 @@ small{opacity:.7}
     <p><small>Carica le foto dall'admin: verranno mostrate subito sul sito (salvate nel browser). Per renderle permanenti per tutti i visitatori, clicca <strong>Esporta foto</strong> e inviale a chi gestisce il sito, oppure lasciale in localStorage (funziona sul tuo dispositivo).</small></p>
     <div class="tabs" style="margin-top:10px">
       <button class="tab active" data-ptab="banner">Banner 3 foto</button>
+      <button class="tab" data-ptab="hero">Hero</button>
       <button class="tab" data-ptab="chi-era">Chi era Francesco</button>
       <button class="tab" data-ptab="sua-storia">La sua storia</button>
       <button class="tab" data-ptab="nostra-storia">La nostra storia</button>
+      <button class="tab" data-ptab="lettera">Lettera aperta</button>
     </div>
     <div id="photoPanel-banner" class="photo-panel">
+      <p><small>Tre foto grandi tra hero e Chi era Francesco</small></p>
       <input type="file" id="file-banner" accept="image/*" multiple>
       <div style="margin-top:8px;display:flex;gap:8px">
         <button class="btn btn-ok" data-save="banner">💾 SALVA foto Banner</button>
         <span id="status-banner" style="align-self:center;font-weight:700"></span>
       </div>
       <div class="list" id="preview-banner" style="margin-top:10px"></div>
+    </div>
+    <div id="photoPanel-hero" class="photo-panel" style="display:none">
+      <p><small>Immagine di sfondo hero (sotto il titolo Per Francesco) — 1 foto</small></p>
+      <input type="file" id="file-hero" accept="image/*">
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button class="btn btn-ok" data-save="hero">💾 SALVA foto Hero</button>
+        <span id="status-hero" style="align-self:center;font-weight:700"></span>
+      </div>
+      <div class="list" id="preview-hero" style="margin-top:10px"></div>
     </div>
     <div id="photoPanel-chi-era" class="photo-panel" style="display:none">
       <input type="file" id="file-chi-era" accept="image/*" multiple>
@@ -110,6 +122,15 @@ small{opacity:.7}
         <span id="status-nostra-storia" style="align-self:center;font-weight:700"></span>
       </div>
       <div class="list" id="preview-nostra-storia" style="margin-top:10px"></div>
+    </div>
+    <div id="photoPanel-lettera" class="photo-panel" style="display:none">
+      <p><small>Foto in cima alla Lettera aperta (facoltativa, 1 foto)</small></p>
+      <input type="file" id="file-lettera" accept="image/*">
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button class="btn btn-ok" data-save="lettera">💾 SALVA foto Lettera</button>
+        <span id="status-lettera" style="align-self:center;font-weight:700"></span>
+      </div>
+      <div class="list" id="preview-lettera" style="margin-top:10px"></div>
     </div>
     <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn" id="exportPhotosBtn" style="background:var(--y3)">Esporta foto (JSON)</button>
