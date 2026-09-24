@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="In memoria di Francesco - Storia, sicurezza sul lavoro, testimonianze">
+    <title>Per Francesco - In memoria di chi non c'è più</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Menu a tendina in alto a sinistra -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">☀</span>
+                <span class="logo-text">Per Francesco</span>
+            </div>
+            
+            <nav class="nav-dropdown" id="navDropdown">
+                <button class="dropdown-toggle" id="dropdownToggle" aria-expanded="false" aria-label="Apri menu">
+                    <span class="hamburger"></span>
+                    <span class="menu-label">Menu</span>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu" role="menu">
+                    <a href="#chi-era" class="dropdown-item" role="menuitem">Chi era Francesco</a>
+                    <a href="#sua-storia" class="dropdown-item" role="menuitem">La sua storia</a>
+                    <a href="#nostra-storia" class="dropdown-item" role="menuitem">La nostra storia</a>
+                    <a href="#lettera-aperta" class="dropdown-item" role="menuitem">Lettera aperta</a>
+                    <a href="#racconta-storia" class="dropdown-item" role="menuitem">Racconta la tua storia</a>
+                    <a href="#lascia-pensiero" class="dropdown-item" role="menuitem">Lascia un pensiero</a>
+                    <a href="#contatti" class="dropdown-item" role="menuitem">Contatti</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="admin/index.html" class="dropdown-item admin-link" role="menuitem">🔐 Area Admin</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-background"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Per Francesco</h1>
+                <p class="hero-subtitle">In memoria di una vita spezzata troppo presto</p>
+                <p class="hero-dedication">Perché nessuna famiglia debba più vivere questo dolore</p>
+                <a href="#chi-era" class="btn btn-primary">Scopri la sua storia</a>
+            </div>
+            <div class="hero-scroll-indicator">
+                <span>Scorri</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Sezione 1: Chi era Francesco -->
+        <section class="section section-card" id="chi-era">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-badge">1</span>
+                    <h2 class="section-title">Chi era Francesco</h2>
+                    <p class="section-subtitle">Conosci la persona dietro il nome</p>
+                </header>
+                
+                <div class="content-grid">
+                    <div class="content-text">
+                        <div class="text-block">
+                            <h3>Un figlio, un fratello, un amico</h3>
+                            <p>Francesco era luce. Di quelle che lasciano il segno non per quanto brillano, ma per come scaldano chi gli sta vicino.</p>
+                            <p>Aveva <strong>24 anni</strong>, una passione viscerale per la musica, amava cucinare per gli amici la domenica sera e sognava di aprire un piccolo locale tutto suo dove far stare bene le persone.</p>
+                        </div>
+                        <div class="text-block">
+                            <h3>I suoi valori</h3>
+                            <ul class="values-list">
+                                <li><span class="value-icon">🤝</span> La lealtà sopra ogni cosa</li>
+                                <li><span class="value-icon">😊</span> Il sorriso come linguaggio universale</li>
+                                <li><span class="value-icon">💪</span> Il lavoro onesto e ben fatto</li>
+                                <li><span class="value-icon">❤️</span> L'amore per la famiglia e gli amici</li>
+                            </ul>
+                        </div>
+                        <div class="text-block highlight-box">
+                            <p><strong>"Francesco non lavorava per vivere, viveva per lavorare bene."</strong> — Questo diceva sempre suo padre. E chi l'ha conosciuto sul lavoro lo conferma: preciso, attento, rispettoso delle regole e della sicurezza.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-gallery" id="gallery-chi-era">
+                        <h3 class="gallery-title">Gallery</h3>
+                        <div class="gallery-grid" id="grid-chi-era">
+                            <!-- Le immagini verranno caricate dinamicamente -->
+                        </div>
+                        <button class="btn btn-gallery-expand" data-gallery="chi-era">Visualizza tutte le foto</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione 2: La sua storia -->
+        <section class="section section-card alt" id="sua-storia">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-badge">2</span>
+                    <h2 class="section-title">La sua storia</h2>
+                    <p class="section-subtitle">Cosa è successo quel giorno</p>
+                </header>
+                
+                <div class="content-grid reverse">
+                    <div class="content-text">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <time class="timeline-date">15 Marzo 2023</time>
+                                    <h4>Una mattina come tante</h4>
+                                    <p>Francesco si alza presto, fa colazione con sua madre, scherza con suo fratello. "Torno per cena, faccio io la carbonara." Esce di casa alle 6:45, come ogni giorno.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <time class="timeline-date">Ore 11:23</time>
+                                    <h4>L'incidente</h4>
+                                    <p>In cantiere, una lastra di cemento armato non adeguatamente ancorata cede. Francesco sta lavorando nella zona sottostante. Non c'è tempo per reagire. I dispositivi di protezione collettiva non erano stati installati.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <time class="timeline-date">Ore 11:47</time>
+                                    <h4>L'arrivo dei soccorsi</h4>
+                                    <p>Chiamata al 118. I colleghi cercano di aiutarlo. L'elisoccorso atterra nel campo accanto al cantiere. Ma è troppo tardi.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <time class="timeline-date">Ore 12:15</time>
+                                    <h4>Il referto</time>
+                                    <p>"Trauma cranico severo, schiacciamento toracico." Francesco non ce l'ha fatta. A 24 anni, per una lastra non ancorata. Per un ponteggio mancante. Per una procedura saltata.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="key-facts">
+                            <h4>I fatti accertati</h4>
+                            <ul>
+                                <li>Mancanza di parapetti e protezioni collettive</li>
+                                <li>Materiali non ancorati correttamente</li>
+                                <li>Assenza del preposto in cantiere al momento dell'incidente</li>
+                                <li>DVR (Documento Valutazione Rischi) non aggiornato per quella fase lavorativa</li>
+                                <li>Nessuna riunione di cantiere quella mattina</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-gallery" id="gallery-sua-storia">
+                        <h3 class="gallery-title">Gallery</h3>
+                        <div class="gallery-grid" id="grid-sua-storia">
+                            <!-- Le immagini verranno caricate dinamicamente -->
+                        </div>
+                        <button class="btn btn-gallery-expand" data-gallery="sua-storia">Visualizza tutte le foto</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione 3: La nostra storia -->
+        <section class="section section-card" id="nostra-storia">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-badge">3</span>
+                    <h2 class="section-title">La nostra storia</h2>
+                    <p class="section-subtitle">Il dopo, il dolore, la lotta</p>
+                </header>
+                
+                <div class="content-grid">
+                    <div class="content-text">
+                        <div class="text-block">
+                            <h3>Il vuoto incolmabile</h3>
+                            <p>La porta di camera sua è rimasta chiusa per mesi. Il suo spazzolino nel bagno. La sua tazza preferita in cucina. Il posto vuoto a tavola la domenica. Il silenzio dove c'erano le sue risate, la sua chitarra, i suoi progetti.</p>
+                        </div>
+                        <div class="text-block">
+                            <h3>La ricerca di verità</h3>
+                            <p>Non ci siamo fermati al "destino" o alla "fatalità". Abbiamo chiesto i verbali, letto le perizie, parlato con i testimoni. Ogni documento confermava la stessa cosa: <strong>si poteva evitare</strong>.</p>
+                            <p>Il processo è ancora in corso. L'azienda ha patteggiato. Il preposto è stato rinviato a giudizio. Ma nessuna condanna riporterà Francesco a casa per la carbonara della domenica.</p>
+                        </div>
+                        <div class="text-block">
+                            <h3>Da quel dolore, una missione</h3>
+                            <p>Oggi la nostra storia continua parlando di sicurezza. Andiamo nelle scuole, nei cantieri, nelle aziende. Raccontiamo Francesco per dire a ogni lavoratore: <strong>torna a casa stasera.</strong> E a ogni datore di lavoro: <strong>la sicurezza non è un costo, è un dovere.</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-gallery" id="gallery-nostra-storia">
+                        <h3 class="gallery-title">Gallery</h3>
+                        <div class="gallery-grid" id="grid-nostra-storia">
+                            <!-- Le immagini verranno caricate dinamicamente -->
+                        </div>
+                        <button class="btn btn-gallery-expand" data-gallery="nostra-storia">Visualizza tutte le foto</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione 4: Lettera Aperta sulla Sicurezza sul Lavoro -->
+        <section class="section section-letter" id="lettera-aperta">
+            <div class="container">
+                <div class="letter-container">
+                    <header class="letter-header">
+                        <span class="letter-badge">LETTERA APERTA</span>
+                        <h2 class="letter-title">Sulla sicurezza sul lavoro: non è fatalità, è scelta</h2>
+                        <p class="letter-meta">Scritta da <strong>Walter</strong> — Padre di Francesco</p>
+                    </header>
+                    
+                    <div class="letter-content" id="letterContent">
+                        <p class="letter-paragraph"><strong>Mio figlio Francesco non è tornato a casa il 15 marzo 2023.</strong> Non per una malattia improvvisa, non per un destino crudele. È morto perché qualcuno ha deciso che la sicurezza costava troppo tempo, troppi soldi, troppa fatica.</p>
+                        
+                        <p class="letter-paragraph">Una lastra di cemento armato da due tonnellate. Non ancorata. Nessun parapetto. Nessun preposto presente. Il Documento Valutazione Rischi fermo a sei mesi prima. La riunione di cantiere saltata "perché si fa in fretta".</p>
+                        
+                        <p class="letter-paragraph">Queste non sono dimenticanze. Sono <strong>scelte</strong>. Scelte che qualcuno ha fatto seduto in un ufficio, o in piedi su un ponteggio, pensando "tanto niente succede". Fino a quando succede. E allora è troppo tardi.</p>
+                        
+                        <div class="letter-highlight">
+                            <p>In Italia muoiono ancora <strong>oltre 1.000 persone l'anno</strong> sul lavoro. Tremila nei primi nove mesi del 2023. Non sono numeri. Sono padri, madri, figli, fratelli. Sono posti vuoti a tavola. Sono futuri cancellati.</p>
+                        </div>
+                        
+                        <p class="letter-paragraph">La sicurezza non è un modulo da firmare. Non è un casco comprato all'ultimo minuto per l'ispezione. Non è un corso fatto di fretta sul divano di casa.</p>
+                        
+                        <p class="letter-paragraph"><strong>La sicurezza è:</strong></p>
+                        <ul class="letter-list">
+                            <li>Il coraggio di fermare il lavoro quando non è sicuro</li>
+                            <li>Il preposto che c'è, vede, interviene</li>
+                            <li>Il Datore di Lavoro che investe in prevenzione prima che in avvocati</li>
+                            <li>Il lavoratore che denuncia senza paura di ritorsioni</li>
+                            <li>Lo Stato che controlla e sanziona davvero</li>
+                        </ul>
+                        
+                        <p class="letter-paragraph">Chiedo a voi — lavoratori, preposti, datori di lavoro, sindacati, istituzioni, cittadini — di smettere di chiamarle "morti bianche". <strong>Non c'è nulla di bianco, di pulito, di neutro in una vita spezzata per negligenza.</strong></p>
+                        
+                        <p class="letter-paragraph">Chiedo che ogni cantiere, ogni fabbrica, ogni ufficio diventi un luogo dove la domanda "è sicuro?" venga prima di "quanto ci mettiamo?".</p>
+                        
+                        <p class="letter-paragraph">Lo chiedo per Francesco. Per tutti i Francesco che non ci sono più. Per tutti quelli che domani usciranno di casa per andare a lavorare.</p>
+                        
+                        <p class="letter-signature">Con dolore e determinazione,<br><strong>Walter</strong><br>Padre di Francesco</p>
+                    </div>
+                    
+                    <div class="letter-actions">
+                        <button class="btn btn-secondary" id="shareLetter">Condividi la lettera</button>
+                        <button class="btn btn-primary" id="supportLetter">Sostieni la causa</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione 5: Racconta la tua storia / Lascia un pensiero -->
+        <section class="section section-dual" id="interactive-section">
+            <div class="container">
+                <header class="section-header center">
+                    <span class="section-badge">4</span>
+                    <h2 class="section-title">La tua voce</h2>
+                    <p class="section-subtitle">Questo spazio è per te. Perché non sei solo.</p>
+                </header>
+                
+                <div class="dual-grid">
+                    <!-- Racconta la tua storia -->
+                    <article class="dual-card" id="racconta-storia">
+                        <div class="dual-card-header">
+                            <span class="dual-icon">📖</span>
+                            <h3>RACCONTA LA TUA STORIA</h3>
+                        </div>
+                        <p class="dual-description">Hai vissuto un'esperienza simile? Hai perso qualcuno sul lavoro? Hai subito un infortunio che ti ha cambiato la vita? La tua storia può aiutare altri a non sentirsi soli e può spingere chi decide a fare di più.</p>
+                        
+                        <form class="story-form" id="storyForm" data-type="story">
+                            <div class="form-group">
+                                <label for="storyName">Il tuo nome <span class="optional">(facoltativo)</span></label>
+                                <input type="text" id="storyName" name="name" placeholder="Nome e cognome o nickname">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="anonymous" value="true" id="storyAnonymous">
+                                    <span class="checkmark"></span>
+                                    Pubblica in anonimo
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="storyTitle">Titolo della tua storia</label>
+                                <input type="text" id="storyTitle" name="title" required placeholder="Es. Quando ho perso mio fratello in cantiere...">
+                            </div>
+                            <div class="form-group">
+                                <label for="storyText">La tua storia</label>
+                                <textarea id="storyText" name="content" rows="8" required placeholder="Racconta cosa è successo, come ti sei sentito, cosa vorresti cambiare..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="consent" required id="storyConsent">
+                                    <span class="checkmark"></span>
+                                    Acconsento alla pubblicazione dopo approvazione e al trattamento dati per questo scopo
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Invia la tua storia</button>
+                            <p class="form-note">La tua storia sarà pubblicata solo dopo la nostra approvazione. Riceverai una conferma via email se lasci un contatto.</p>
+                        </form>
+                        
+                        <div class="submissions-preview" id="storiesPreview">
+                            <h4>Storie pubblicate</h4>
+                            <div class="submissions-list" id="storiesList"></div>
+                        </div>
+                    </article>
+                    
+                    <!-- Lascia un pensiero -->
+                    <article class="dual-card" id="lascia-pensiero">
+                        <div class="dual-card-header">
+                            <span class="dual-icon">💭</span>
+                            <h3>LASCIA UN PENSIERO</h3>
+                        </div>
+                        <p class="dual-description">Vuoi solo lasciare un messaggio, un pensiero, una preghiera, una frase per Francesco, per la sua famiglia, per chi lotta ogni giorno per la sicurezza? Questo è lo spazio.</p>
+                        
+                        <form class="thought-form" id="thoughtForm" data-type="thought">
+                            <div class="form-group">
+                                <label for="thoughtName">Il tuo nome <span class="optional">(facoltativo)</span></label>
+                                <input type="text" id="thoughtName" name="name" placeholder="Nome o nickname">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="anonymous" value="true" id="thoughtAnonymous">
+                                    <span class="checkmark"></span>
+                                    Pubblica in anonimo
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="thoughtText">Il tuo pensiero</label>
+                                <textarea id="thoughtText" name="content" rows="6" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="consent" required id="thoughtConsent">
+                                    <span class="checkmark"></span>
+                                    Acconsento alla pubblicazione dopo approvazione
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Lascia il tuo pensiero</button>
+                            <p class="form-note">Il tuo pensiero sarà pubblicato solo dopo la nostra approvazione.</p>
+                        </form>
+                        
+                        <div class="submissions-preview" id="thoughtsPreview">
+                            <h4>Pensieri pubblicati</h4>
+                            <div class="submissions-list" id="thoughtsList"></div>
+                        </div                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione 6: Contatti -->
+        <section class="section section-contacts" id="contatti">
+            <div class="container">
+                <header class="section-header center">
+                    <span class="section-badge">5</span>
+                    <h2 class="section-title">Contatti</h2>
+                    <p class="section-subtitle">Se hai bisogno di parlare, io ci sono</p>
+                </header>
+                
+                <div class="contacts-grid">
+                    <div class="contact-info">
+                        <h3>Walter — Padre di Francesco</h3>
+                        <p class="contact-intro">Non sono un'associazione, non sono un politico. Sono solo un padre che ha perso suo figlio e che vuole che non accada più a nessun altro. Se vuoi scrivermi, chiamarmi, incontrarmi: ci sono.</p>
+                        
+                        <div class="contact-methods">
+                            <a href="mailto:walter@perfrancesco.it" class="contact-method">
+                                <span class="contact-icon">✉</span>
+                                <div>
+                                    <strong>Email</strong>
+                                    <span>walter@perfrancesco.it</span>
+                                </div>
+                            </a>
+                            <a href="tel:+393XX XXXXXXX" class="contact-method">
+                                <span class="contact-icon">📞</span>
+                                <div>
+                                    <strong>Telefono</strong>
+                                    <span>+39 3XX XXXXXXX</span>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/393XXXXXXXXX" class="contact-method" target="_blank">
+                                <span class="contact-icon">💬</span>
+                                <div>
+                                    <strong>WhatsApp</strong>
+                                    <span>Scrivimi quando vuoi</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="contact-availability">
+                            <h4>Disponibilità</h4>
+                            <ul>
+                                <li>📅 Dal lunedì al venerdì: 9:00 – 19:00</li>
+                                <li>📅 Sabato: 10:00 – 14:00</li>
+                                <li>⏱ Rispondo entro 24-48 ore</li>
+                                <li>🤝 Incontro di persona possibile (zone: Milano, Bergamo, Brescia)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <h3>Scrivimi direttamente</h3>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="contactName">Nome <span class="required">*</span></label>
+                                <input type="text" id="contactName" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email <span class="required">*</span></label>
+                                <input type="email" id="contactEmail" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">Oggetto</label>
+                                <select id="contactSubject" name="subject">
+                                    <option value="">Scegli un argomento</option>
+                                    <option value="testimonianza">Vuoi testimoniare</option>
+                                    <option value="scuole">Intervento in scuola/azienda</option>
+                                    <option value="supporto">Cerco supporto</option>
+                                    <option value="collaborazione">Proposta collaborazione</option>
+                                    <option value="altro">Altro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Messaggio <span class="required">*</span></label>
+                                <textarea id="contactMessage" name="message" rows="6" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Invia messaggio</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <span class="footer-logo">☀ Per Francesco</span>
+                    <p>Perché nessuna famiglia debba più vivere questo dolore</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#chi-era">Chi era Francesco</a>
+                    <a href="#sua-storia">La sua storia</a>
+                    <a href="#nostra-storia">La nostra storia</a>
+                    <a href="#lettera-aperta">Lettera aperta</a>
+                    <a href="#contatti">Contatti</a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Per Francesco. Tutti i diritti riservati.</p>
+                    <p class="footer-note">Sito creato in memoria di Francesco — La sicurezza sul lavoro è un diritto, non un favore</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox per gallery -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizzazione immagine">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Chiudi">×</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Precedente">‹</button>
+        <button class="lightbox-next" id="lightboxNext" aria-label="Successiva">›</button>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="">
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Modal conferma invio -->
+    <div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <h3 id="modalTitle">Messaggio inviato</h3>
+            <p id="modalMessage">Il tuo contenuto è stato inviato per la revisione. Sarà pubblicato dopo l'approvazione.</p>
+            <button class="btn btn-primary" id="modalClose">Chiudi</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

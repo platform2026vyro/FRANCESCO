@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Per Francesco</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--y1:#FFF9C4;--y2:#FFEE58;--y3:#FFC107;--y4:#FFB300;--dark:#1A1A18}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,sans-serif;background:var(--y1);color:var(--dark)}
+.header{position:sticky;top:0;background:var(--dark);color:var(--y1);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.header a{color:var(--y2);text-decoration:none;font-weight:700}
+.wrap{max-width:1000px;margin:0 auto;padding:18px}
+.card{background:#fff;border:2px solid #FFF59D;border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 8px 30px rgba(0,0,0,.07)}
+.btn{border:0;border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
+.btn-ok{background:#2E7D32;color:#fff}.btn-no{background:#C62828;color:#fff}.btn-dark{background:var(--dark);color:var(--y1)}
+.login{max-width:420px;margin:60px auto}
+input{width:100%;padding:10px 12px;border-radius:10px;border:2px solid #FFECB3;font:inherit}
+.tabs{display:flex;gap:8px;margin:10px 0}
+.tab{padding:8px 12px;border-radius:999px;border:2px solid var(--dark);cursor:pointer;background:#fff}
+.tab.active{background:var(--y3)}
+.list{display:grid;gap:10px}
+.item{border:1px solid #FFECB3;border-radius:12px;padding:10px;background:#FFFEF7}
+.meta{font-size:.82rem;opacity:.7}
+.actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.badge{display:inline-block;background:var(--y3);padding:2px 8px;border-radius:999px;font-size:.75rem;font-weight:800}
+small{opacity:.7}
+</style>
+</head>
+<body>
+<header class="header">
+  <strong>🔐 Admin — Per Francesco</strong>
+  <a href="../index.html">← Torna al sito</a>
+</header>
+
+<div id="loginView" class="wrap login card">
+  <h2>Accesso admin</h2>
+  <p><small>Password di default: <code>francesco</code> — cambiala in <code>admin.js</code> (ADMIN_PASSWORD)</small></p>
+  <div style="height:10px"></div>
+  <input id="pwd" type="password" placeholder="Password">
+  <div style="height:10px"></div>
+  <button class="btn btn-dark" id="loginBtn" style="width:100%">Entra</button>
+  <p id="loginErr" style="color:#C62828;margin-top:8px;display:none">Password errata</p>
+</div>
+
+<div id="appView" class="wrap" style="display:none">
+  <div class="card">
+    <h2>Gestione contenuti</h2>
+    <p>I messaggi <strong>RACCONTA LA TUA STORIA</strong> e <strong>LASCIA UN PENSIERO</strong> arrivano qui in <em>pending</em>. Approvali per pubblicarli sul sito. Tutto è salvato in <code>localStorage</code> del browser (backend semplice come richiesto).</p>
+    <p><small>Per un backend reale con database, sostituisci localStorage con chiamate fetch al tuo server.</small></p>
+    <div style="height:10px"></div>
+    <button class="btn btn-dark" id="logoutBtn">Esci</button>
+    <button class="btn" id="exportBtn" style="background:var(--y2)">Esporta JSON</button>
+    <button class="btn" id="clearBtn" style="background:#FFCDD2">Svuota tutto</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="stories">Storie (<span id="cStories">0</span>)</button>
+    <button class="tab" data-tab="thoughts">Pensieri (<span id="cThoughts">0</span>)</button>
+  </div>
+
+  <div id="panelStories">
+    <h3>Storie in attesa di approvazione <span class="badge" id="bStories">0 pending</span></h3>
+    <div id="listStoriesPending" class="list"></div>
+    <h3 style="margin-top:14px">Storie approvate</h3>
+    <div id="listStoriesApproved" class="list"></div>
+  </div>
+  <div id="panelThoughts" style="display:none">
+    <h3>Pensieri in attesa <span class="badge" id="bThoughts">0 pending</span></h3>
+    <div id="listThoughtsPending" class="list"></div>
+    <h3 style="margin-top:14px">Pensieri approvati</h3>
+    <div id="listThoughtsApproved" class="list"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>Gallery — come aggiungere le tue foto</h3>
+    <ol style="margin-left:18px">
+      <li>Metti i file in <code>images/chi-era/</code>, <code>images/sua-storia/</code>, <code>images/nostra-storia/</code></li>
+      <li>Nominali <code>1.jpg</code>, <code>2.jpg</code>, <code>3.jpg</code> … fino a <code>6.jpg</code> (puoi aumentare <code>count</code> in <code>js/main.js</code>)</li>
+      <li>Formati consigliati: JPG — lato lungo 1600px — peso &lt; 400KB</li>
+    </ol>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
