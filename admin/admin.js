@@ -139,36 +139,47 @@ function renderPhotoPreviews(){
     });
   });
 }
+const pendingFiles={};
 function handleFileInput(panel){
   const input=document.getElementById('file-'+panel);
   if(!input) return;
-  input.addEventListener('change', async ()=>{
-    const files=[...input.files];
-    if(!files.length) return;
-    let arr=loadPhotos(panel);
-    for(const f of files){
-      if(f.size>8*1024*1024){ alert('File troppo grande (>8MB): '+f.name); continue; }
-      const b64=await fileToDataURL(f);
-      let resized=await resizeDataUrl(b64, 900);
-      // se ancora > 600KB prova compressione più spinta
-      if(resized.length>600*1024) resized=await resizeDataUrl(b64, 700);
-      arr.push(resized);
-      try{
-        savePhotos(panel, arr);
-      }catch(e){
-        // quota superata: rimuovi ultimo e avvisa
-        arr.pop();
-        alert('Spazio esaurito nel browser (localStorage ~5MB). Rimuovi qualche foto o usa immagini più piccole. Errore: '+e.message);
-        break;
-      }
-    }
-    input.value='';
-    renderPhotoPreviews();
-    // verifica salvataggio
-    try{ localStorage.setItem('pf_test','1'); localStorage.removeItem('pf_test'); }catch(e){ alert('localStorage pieno o disabilitato: '+e.message); }
+  pendingFiles[panel]=[];
+  input.addEventListener('change', ()=>{
+    pendingFiles[panel]=[...input.files];
+    const st=document.getElementById('status-'+panel);
+    if(st) st.textContent= pendingFiles[panel].length ? pendingFiles[panel].length+' file selezionati — clicca SALVA' : '';
   });
 }
 ['banner','chi-era','sua-storia','nostra-storia'].forEach(handleFileInput);
+async function savePanel(panel){
+  const files=pendingFiles[panel]||[];
+  if(!files.length){ alert('Seleziona prima le foto con "Scegli file"'); return; }
+  const btn=document.querySelector(`[data-save="${panel}"]`);
+  const st=document.getElementById('status-'+panel);
+  if(btn) btn.textContent='⏳ Salvo...';
+  let arr=loadPhotos(panel);
+  for(const f of files){
+    if(f.size>8*1024*1024){ alert('File troppo grande (>8MB): '+f.name); continue; }
+    const b64=await fileToDataURL(f);
+    let resized=await resizeDataUrl(b64, 900);
+    if(resized.length>600*1024) resized=await resizeDataUrl(b64, 700);
+    arr.push(resized);
+    try{ savePhotos(panel, arr); }catch(e){
+      arr.pop();
+      alert('Spazio esaurito (localStorage ~5MB). Rimuovi qualche foto o usa immagini più piccole. '+e.message);
+      break;
+    }
+  }
+  pendingFiles[panel]=[];
+  document.getElementById('file-'+panel).value='';
+  if(st) st.textContent='✅ Salvato!';
+  if(btn) btn.textContent='💾 SALVA foto '+panel;
+  renderPhotoPreviews();
+  setTimeout(()=>{ if(st) st.textContent=''; }, 2500);
+}
+document.querySelectorAll('[data-save]').forEach(b=>{
+  b.addEventListener('click', ()=> savePanel(b.dataset.save));
+});
 document.getElementById('exportPhotosBtn')?.addEventListener('click', ()=>{
   const data={};
   Object.keys(PHOTO_KEYS).forEach(k=> data[k]=loadPhotos(k));
