@@ -145,17 +145,27 @@ function handleFileInput(panel){
   input.addEventListener('change', async ()=>{
     const files=[...input.files];
     if(!files.length) return;
-    const arr=loadPhotos(panel);
+    let arr=loadPhotos(panel);
     for(const f of files){
+      if(f.size>8*1024*1024){ alert('File troppo grande (>8MB): '+f.name); continue; }
       const b64=await fileToDataURL(f);
-      // ridimensiona client-side per non esplodere localStorage (max ~5MB)
-      const resized=await resizeDataUrl(b64, 1200);
+      let resized=await resizeDataUrl(b64, 900);
+      // se ancora > 600KB prova compressione più spinta
+      if(resized.length>600*1024) resized=await resizeDataUrl(b64, 700);
       arr.push(resized);
+      try{
+        savePhotos(panel, arr);
+      }catch(e){
+        // quota superata: rimuovi ultimo e avvisa
+        arr.pop();
+        alert('Spazio esaurito nel browser (localStorage ~5MB). Rimuovi qualche foto o usa immagini più piccole. Errore: '+e.message);
+        break;
+      }
     }
-    savePhotos(panel, arr);
     input.value='';
     renderPhotoPreviews();
-    alert('Foto aggiunte per '+panel+'. Ricarica il sito per vederle.');
+    // verifica salvataggio
+    try{ localStorage.setItem('pf_test','1'); localStorage.removeItem('pf_test'); }catch(e){ alert('localStorage pieno o disabilitato: '+e.message); }
   });
 }
 ['banner','chi-era','sua-storia','nostra-storia'].forEach(handleFileInput);
@@ -174,15 +184,21 @@ function fileToDataURL(file){
   return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file); });
 }
 function resizeDataUrl(dataUrl, maxSide){
-  return new Promise(res=>{
-    const img=new Image(); img.onload=()=>{
+  return new Promise((res, rej)=>{
+    const img=new Image();
+    img.onerror=()=> res(dataUrl);
+    img.onload=()=>{
       let w=img.width, h=img.height;
+      if(!w || !h) return res(dataUrl);
       if(w>maxSide || h>maxSide){
         const s=Math.min(maxSide/w, maxSide/h); w=Math.round(w*s); h=Math.round(h*s);
-      } else return res(dataUrl);
+      }
       const c=document.createElement('canvas'); c.width=w; c.height=h;
-      c.getContext('2d').drawImage(img,0,0,w,h);
-      res(c.toDataURL('image/jpeg', 0.8));
-    }; img.src=dataUrl;
+      const ctx=c.getContext('2d');
+      if(!ctx) return res(dataUrl);
+      ctx.drawImage(img,0,0,w,h);
+      try{ res(c.toDataURL('image/jpeg', 0.7)); }catch(e){ res(dataUrl); }
+    };
+    img.src=dataUrl;
   });
 }
